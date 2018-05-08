@@ -1,5 +1,5 @@
 #pragma once
-#include "parseArgument.hpp"
+#include "parseArgument.h"
 #include "ArgumentsParser.h"
 
 namespace MicroScript

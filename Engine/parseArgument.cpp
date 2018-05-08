@@ -1,15 +1,12 @@
-#pragma once
+#include "stdafx.h"
 #include <string>
-#include "hresult.hpp"
 #include "utils.hpp"
+#include "parseArgument.h"
 
 namespace MicroScript
 {
-	template<class tArg>
-	inline HRESULT parseArgument( const char* arg, size_t length, tArg& result );
-
 	template<>
-	inline HRESULT parseArgument<bool>( const char* arg, size_t length, bool& result )
+	HRESULT parseArgument<bool>( const char* arg, size_t length, bool& result )
 	{
 		if( 0 == compareString( arg, "true", length ) )
 		{
@@ -25,7 +22,7 @@ namespace MicroScript
 	}
 
 	template<>
-	inline HRESULT parseArgument<int32_t>( const char* arg, size_t length, int32_t& result )
+	HRESULT parseArgument<int32_t>( const char* arg, size_t length, int32_t& result )
 	{
 		return parseInt( arg, length, result ) ? S_OK : E_INVALIDARG;
 	}
@@ -45,7 +42,7 @@ namespace MicroScript
 	}
 
 	template<>
-	inline HRESULT parseArgument<std::string>( const char* arg, size_t length, std::string& result )
+	HRESULT parseArgument<std::string>( const char* arg, size_t length, std::string& result )
 	{
 		result = std::string{ arg, arg + length };
 		using namespace std::literals;

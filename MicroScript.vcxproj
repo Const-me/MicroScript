@@ -156,7 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Function.hpp" />
-    <ClInclude Include="Engine\parseArgument.hpp" />
+    <ClInclude Include="Engine\parseArgument.h" />
     <ClInclude Include="Engine\hresult.hpp" />
     <ClInclude Include="Engine\ArgumentsParser.h" />
     <ClInclude Include="Engine\ParserBase.hpp" />
@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\ArgumentsParser.cpp" />
+    <ClCompile Include="Engine\parseArgument.cpp" />
     <ClCompile Include="Engine\Registrator.cpp" />
     <ClCompile Include="Engine\ScriptParser.cpp" />
     <ClCompile Include="MicroScript.cpp" />

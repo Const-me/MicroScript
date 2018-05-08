@@ -11,9 +11,6 @@
     <ClInclude Include="Engine\hresult.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\parseArgument.hpp">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\ParserBase.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -24,6 +21,9 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\utils.hpp" />
+    <ClInclude Include="Engine\parseArgument.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MicroScript.cpp" />
@@ -37,6 +37,7 @@
     <ClCompile Include="Engine\Registrator.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\parseArgument.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

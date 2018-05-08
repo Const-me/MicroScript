@@ -9,12 +9,14 @@
 
 namespace MicroScript
 {
-	inline int compareString( const char* a, const char* b, size_t length )
+	inline bool compareString( const char* a, const std::string& b, size_t length )
 	{
+		if( b.length() != length )
+			return false;
 #ifdef _WIN32
-		return _strnicmp( a, b, length );
+		return 0 == _strnicmp( a, b.c_str(), length );
 #else
-		return strncasecmp( a, b, length );
+		return 0 == strncasecmp( a, b.c_str(), length );
 #endif
 	}
 

@@ -31,6 +31,8 @@ HRESULT ArgumentsParser::next( const char** begin, size_t &length )
 			return skipTrailingSpaces( begin, length );
 		case ')':
 			length = m_next - *begin;
+			if( length <= 0 )
+				return E_INVALIDARG;
 			return skipTrailingSpaces( begin, length );
 		}
 

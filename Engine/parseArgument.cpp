@@ -8,12 +8,13 @@ namespace MicroScript
 	template<>
 	HRESULT parseArgument<bool>( const char* arg, size_t length, bool& result )
 	{
-		if( 0 == compareString( arg, "true", length ) )
+		using namespace std::literals;
+		if( compareString( arg, "true"s, length ) )
 		{
 			result = true;
 			return S_OK;
 		}
-		if( 0 == compareString( arg, "false", length ) )
+		if( compareString( arg, "false"s, length ) )
 		{
 			result = false;
 			return S_OK;

@@ -10,9 +10,11 @@ namespace MicroScript
 		printf( "Hello, World.\n" );
 		return S_OK;
 	}
-	HRESULT print( std::string str )
+	HRESULT print( std::string str, bool newLine )
 	{
-		printf( "%s\n", str.c_str() );
+		printf( "%s", str.c_str() );
+		if( newLine )
+			printf( "\n" );
 		return S_OK;
 	}
 	HRESULT multiply( int a, int b )
@@ -39,7 +41,7 @@ int main()
 
 helloWorld()
 
-print( "Hi\, this is from MicroScript :-\)" )
+print( "Hi\, this is from MicroScript :-\)", true )
 
 multiply( 2, 2 )
 

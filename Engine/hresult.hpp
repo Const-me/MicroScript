@@ -15,6 +15,7 @@ namespace MicroScript
 	constexpr HRESULT E_NOTIMPL = 0x80004001L;
 	constexpr HRESULT E_POINTER = 0x80004003L;
 	constexpr HRESULT E_FAIL = 0x80004005L;
+	constexpr HRESULT DISP_E_UNKNOWNNAME = 0x80020006L;
 }
 
 inline bool FAILED( MicroScript::HRESULT hr )

@@ -37,7 +37,8 @@ HRESULT ScriptParser::interpret()
 
 		const iFunction* func = resolveFunction( std::string{ name, nameEndLast + 1 } );
 		if( nullptr == func )
-			return E_INVALIDARG;
+			return DISP_E_UNKNOWNNAME;
+
 		CHECK( advanceTo( '(' ) );
 		const char* const arglistBegin = m_next;
 		const size_t length = m_end - arglistBegin;

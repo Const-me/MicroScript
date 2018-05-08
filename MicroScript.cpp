@@ -5,9 +5,14 @@
 namespace MicroScript
 {
 	// Register a couple of functions
-	HRESULT helloWorld( std::string str )
+	HRESULT helloWorld()
 	{
-		printf( "Hello, World. %s\n", str.c_str() );
+		printf( "Hello, World.\n" );
+		return S_OK;
+	}
+	HRESULT print( std::string str )
+	{
+		printf( "%s\n", str.c_str() );
 		return S_OK;
 	}
 	HRESULT multiply( int a, int b )
@@ -16,6 +21,7 @@ namespace MicroScript
 		return S_OK;
 	}
 	REGISTER_SCRIPT_FUNC( helloWorld );
+	REGISTER_SCRIPT_FUNC( print );
 	REGISTER_SCRIPT_FUNC( multiply );
 
 	// This won't compile because the engine doesn't specialize parseArgument<> for doubles:
@@ -27,11 +33,13 @@ int main()
 {
 	using namespace std::literals;
 	// Script source. Following characters need to be escaped in the strings: "," => "\,", ")" => "\)", and optionally "\" => "\\"
-	// The parser is very basic, that's not how people normally parse script languages. The main focus of this demo is interpreter, not parser.
+	// The parser is very basic, that's not how people normally parse script languages. The focus of this demo is interpreter, not parser.
 	// Haven't tested but should probably work with UTF8, too.
 	const std::string src = R"fffuuu(
-helloWorld( "
-Hi\, this is from MicroScript :-\)" )
+
+helloWorld()
+
+print( "Hi\, this is from MicroScript :-\)" )
 
 multiply( 2, 2 )
 

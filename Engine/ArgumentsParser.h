@@ -10,8 +10,13 @@ namespace MicroScript
 		ArgumentsParser( const char* begin, size_t length ) :
 			ParserBase( begin, length ) {}
 
+		// Start parsing, advance to the first character after '('
 		HRESULT start();
+
+		// Extract an argument
 		HRESULT next( const char** begin, size_t &length );
+
+		// Finish parsing, advance to the ')'
 		HRESULT finish();
 
 	private:

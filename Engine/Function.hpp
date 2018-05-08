@@ -8,17 +8,18 @@ namespace MicroScript
 	class iFunction
 	{
 	protected:
-		template<size_t i, typename ... ArgTypes>
-		static inline HRESULT parse( ArgumentsParser &ps, std::tuple<ArgTypes...>& args )
+		// Recursive template function to parse string values, produced by ArgumentsParser, into strongly typed tuple elements
+		template<size_t i = 0, typename tTuple>
+		static inline HRESULT parse( ArgumentsParser &ps, tTuple& args )
 		{
-			const char* begin;
-			size_t length;
-			CHECK( ps.next( &begin, length ) );
-
-			CHECK( parseArgument( begin, length, std::get<i>( args ) ) );
-
-			if constexpr( i + 1 < std::tuple_size<std::tuple<ArgTypes...>>::value )
-				return parse<i + 1, ArgTypes...>( ps, args );
+			if constexpr( i < std::tuple_size<tTuple>::value )
+			{
+				const char* begin;
+				size_t length;
+				CHECK( ps.next( &begin, length ) );
+				CHECK( parseArgument( begin, length, std::get<i>( args ) ) );
+				return parse<i + 1>( ps, args );
+			}
 			else
 				return ps.finish();
 		}
@@ -33,7 +34,7 @@ namespace MicroScript
 	class Function: public iFunction
 	{
 	public:
-		using pfnImpl = HRESULT( __cdecl *)( ArgTypes... );
+		using pfnImpl = HRESULT( __cdecl * )( ArgTypes... );
 
 		Function() = delete;
 		Function( pfnImpl fn ) : m_func( fn ) { }
@@ -44,10 +45,10 @@ namespace MicroScript
 			ArgumentsParser ps{ args, length };
 			CHECK( ps.start() );
 			std::tuple<ArgTypes...> theTuple;
-			CHECK( parse<0>( ps, theTuple ) );
+			CHECK( parse( ps, theTuple ) );
 
 			// Invoke the C function pointer
-			return std::apply( m_func, theTuple );
+			return std::apply( m_func, std::move( theTuple ) );
 		}
 
 	private:

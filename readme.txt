@@ -1,3 +1,5 @@
-This project demonstrates how to use modern C++ to implement a trivial script engine that marshals function calls from interpreted script into native code.
+This project demonstrates how to use modern C++ to implement a script engine that marshals function calls from interpreted script into native code.
 
-Only tested on Windows and Visual Studio, but the code should be easy to port.
+Only tested on Windows 10 / Visual Studio 2017, also on MS Linux / clang / libc++. To build for linux, run "cmake ." followed by "make"
+
+Should be easy to port to any other C++/17 compiler.

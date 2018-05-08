@@ -162,8 +162,8 @@
     <ClInclude Include="Engine\ParserBase.hpp" />
     <ClInclude Include="Engine\Registrator.h" />
     <ClInclude Include="Engine\ScriptParser.h" />
+    <ClInclude Include="Engine\utils.hpp" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\ArgumentsParser.cpp" />

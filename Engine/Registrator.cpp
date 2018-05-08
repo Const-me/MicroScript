@@ -4,20 +4,26 @@
 
 namespace
 {
-	std::unordered_map<std::string, const MicroScript::iFunction*> g_functions;
+	// A global variable won't work because initialization order across CPP files is undefined, depends on linker.
+	std::unordered_map<std::string, const MicroScript::iFunction*>& theFunctions()
+	{
+		static std::unordered_map<std::string, const MicroScript::iFunction*> functions;
+		return functions;
+	}
 }
 
 namespace MicroScript
 {
 	void registerFunction( const std::string& name, const iFunction& func )
 	{
-		g_functions[ name ] = &func;
+		theFunctions()[ name ] = &func;
 	}
 
 	const iFunction* resolveFunction( const std::string& name )
 	{
-		const auto it = g_functions.find( name );
-		if( it != g_functions.end() )
+		const auto& functions = theFunctions();
+		const auto it = functions.find( name );
+		if( it != functions.end() )
 			return it->second;
 		return nullptr;
 	}

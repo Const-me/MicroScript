@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "hresult.hpp"
+#include "utils.hpp"
 
 namespace MicroScript
 {
@@ -10,12 +11,12 @@ namespace MicroScript
 	template<>
 	inline HRESULT parseArgument<bool>( const char* arg, size_t length, bool& result )
 	{
-		if( 0 == _strnicmp( arg, "true", length ) )
+		if( 0 == compareString( arg, "true", length ) )
 		{
 			result = true;
 			return S_OK;
 		}
-		if( 0 == _strnicmp( arg, "false", length ) )
+		if( 0 == compareString( arg, "false", length ) )
 		{
 			result = false;
 			return S_OK;
@@ -26,11 +27,7 @@ namespace MicroScript
 	template<>
 	inline HRESULT parseArgument<int32_t>( const char* arg, size_t length, int32_t& result )
 	{
-		char *temp;
-		result = strtol( arg, &temp, 0 );
-		if( temp == arg || temp != arg + length || ( ( result == LONG_MIN || result == LONG_MAX ) && errno == ERANGE ) )
-			return E_INVALIDARG;
-		return S_OK;
+		return parseInt( arg, length, result ) ? S_OK : E_INVALIDARG;
 	}
 
 	// C++/17 still can't replace substrings. Even Visual Basic 6.0 had a built-in Replace function, back in 2000 :-(

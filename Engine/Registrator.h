@@ -27,5 +27,5 @@ namespace MicroScript
 	}
 }
 
-// Macro to register a C function, exposing it to the script engine. All arguments types must have parseArgument<> specialized, see parseArgument.hpp, otherwise it won't compile.
+// Macro to register a C function, exposing it to the script engine. All arguments types must have parseArgument<> specialized, see parseArgument.cpp, otherwise it won't link.
 #define REGISTER_SCRIPT_FUNC( func ) static const auto reg_##func = MicroScript::bindFunction( #func, &func );

@@ -20,8 +20,10 @@
     <ClInclude Include="Engine\Registrator.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\utils.hpp" />
     <ClInclude Include="Engine\parseArgument.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\utils.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
@@ -37,7 +39,9 @@
     <ClCompile Include="Engine\Registrator.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\parseArgument.cpp" />
+    <ClCompile Include="Engine\parseArgument.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
